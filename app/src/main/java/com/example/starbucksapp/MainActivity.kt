@@ -34,12 +34,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.imageViewDrink1.setOnClickListener(this)
 
     }
-
+// just trying to click on the first image and have it go to the 2nd screen and just pull the name through for now to display in a text view
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.imageViewDrink1 -> Toast.makeText(this@MainActivity, "Drink 1", Toast.LENGTH_SHORT).show()
+            R.id.imageViewDrink1 -> Toast.makeText(this@MainActivity, "Drink 1", Toast.LENGTH_SHORT).show() //this shows if i take away opening a second screen
         }
-        openIntent(applicationContext, order.productName,secondScreen::class.java)
+        openIntent(applicationContext, order.productName,secondScreen::class.java) //second screen not opening
     }
 
     private fun openIntent(context: Context, order: String, activityToOpen: Class<*>) {
@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         context.startActivity(intent)
     }
 
+
+    //dont know if this is needed below - ignore
 
     /*fun shareIntent(context: Context, order: String) {
         var sendIntent = Intent()
