@@ -9,10 +9,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.starbucksapp.databinding.ActivityMainBinding
-
+var Product: OrderData = OrderData("")
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    var order = Order()
 
     lateinit var imageViewDrink1: ImageView
     lateinit var imageViewDrink2: ImageView
@@ -31,52 +29,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         imageViewDrink4 = findViewById(R.id.imageViewDrink4)
         imageViewDrink5 = findViewById(R.id.imageViewDrink5)
 
+        Product.ProductName ="Drink 1"
+
         binding.imageViewDrink1.setOnClickListener(this)
 
     }
-// just trying to click on the first image and have it go to the 2nd screen and just pull the name through for now to display in a text view
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.imageViewDrink1 -> Toast.makeText(this@MainActivity, "Drink 1", Toast.LENGTH_SHORT).show() //this shows if i take away opening a second screen
+        when (v?.id)
+        {
+            R.id.imageViewDrink1 -> Toast.makeText(this@MainActivity, "Drink 1", Toast.LENGTH_SHORT).show()
+            R.id.imageViewDrink2 -> Toast.makeText(this@MainActivity, "Drink 2", Toast.LENGTH_SHORT).show()
+
         }
-        openIntent(applicationContext, order.productName,secondScreen::class.java) //second screen not opening
+
+        val intent = Intent(this, secondScreen::class.java)
+        startActivity(intent)
+
     }
-
-    private fun openIntent(context: Context, order: String, activityToOpen: Class<*>) {
-        val intent = Intent(context, activityToOpen)
-
-        intent.putExtra("order", order)
-
-        context.startActivity(intent)
-    }
-
-
-    //dont know if this is needed below - ignore
-
-    /*fun shareIntent(context: Context, order: String) {
-        var sendIntent = Intent()
-        sendIntent.setAction(Intent.ACTION_SEND)
-        sendIntent.putExtra(Intent.EXTRA_TEXT, order)
-
-        sendIntent.setType("text/plain")
-
-        var shareIntent = Intent.createChooser(sendIntent, null)
-        context.startActivity(shareIntent)
-    }
-
-    fun shareIntent(context: Context, order: Order) {
-        var sendIntent = Intent()
-        sendIntent.setAction(Intent.ACTION_SEND)
-
-        var shareOrderDetails = Bundle()
-        shareOrderDetails.putString("productName", order.productName)
-
-        sendIntent.putExtra(Intent.EXTRA_TEXT, shareOrderDetails)
-        sendIntent.setType("text/plain")
-
-        var shareIntent = Intent.createChooser(sendIntent, null)
-        context.startActivity(shareIntent)
-
-    }*/
-
 }
